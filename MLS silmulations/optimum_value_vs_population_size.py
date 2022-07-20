@@ -16,7 +16,7 @@ K2_value = 0.5
 C_value_dictionary_for_model = {}
 
 Initial_population_size_range = np.arange(500, 10000, 500)
-
+Initial_population_test_range = [10000]
 
 
 

@@ -6,6 +6,7 @@ from numba import njit
 
 
 # population_growth_for_group_instance.finding_population_dictionaries_over_time({'C1': 100, 'C2': 100})
+
 class population_growth_for_n_groups_class:
         def __init__(self, parameters_object, initial_list_of_groups_for_calculating_population_growth_over_time):
             self.parameters_object = parameters_object
@@ -44,7 +45,7 @@ class population_growth_for_n_groups_class:
 
             start_time = timer()
 
-            for group_number in parameters_object.Number_of_groups:
+            for group_number in self.parameters_object.Number_of_groups:
 
                 #calculate group dictionary for
 
@@ -93,6 +94,7 @@ class population_growth_for_n_groups_class:
             self.proportion_of_selfish_traits_dictionary_after_pooling["C2"] = sum_of_individuals_with_trait_C2/ total_number_of_individuals
 
             # print("self.proportion_of_selfish_traits_dictionary_after_pooling =", self.proportion_of_selfish_traits_dictionary_after_pooling)
+            # print(self.proportion_of_selfish_traits_dictionary_after_pooling)
 
             return self.proportion_of_selfish_traits_dictionary_after_pooling
 

@@ -23,7 +23,7 @@ optimum_value_list_for_k_value = []
 
 K2_value_test_range = [0.5]
 K2_vs_optimum_value_dictionary = {}
-for i in K2_value_test_range:
+for i in K2_value_range:
     print("value for finding optimum with K value", i)
     parameters_object_for_optimum_value = parameters_class(C_value_dictionary_for_model, Initial_population_size,
                                                            number_of_selfish_traits, Number_of_groups,

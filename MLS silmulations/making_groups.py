@@ -1,6 +1,6 @@
 import numpy as np
 import random
-random.seed(1)
+# random.seed(1)
 from timeit import default_timer as timer
 from parameters_class_file import parameters_class
 from collections import Counter
@@ -80,6 +80,17 @@ class generate_groups:
             combined_list_of_groups_in_compact_form.append(number_of_individuals_of_each_trait_in_group_dict)
 
         combined_list_of_groups_in_compact_form_array = np.array(combined_list_of_groups_in_compact_form)
+
+
+        #testing theory
+
+
+
+
+
+
+
+
         # print("combined_list_of_groups_in_compact_form = ", combined_list_of_groups_in_compact_form)
         # print("time taken new is",timer() - start_time_2)
         # print("combined_list_of_groups_in_compact_form_array",combined_list_of_groups_in_compact_form_array)

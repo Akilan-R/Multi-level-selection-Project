@@ -3,19 +3,20 @@ from Evolving_for_one_timestep import run_simulation_class
 from parameters_class_file import parameters_class
 import time as time
 
-start_time = time.time()
 
 def main():
-    number_of_generations = 1
+    start_time = time.time()
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
+    number_of_generations = 3
+
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
 
     Initial_population_size = 1000
 
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K2_value = 2
-    K1_value = 2
+    K1_value = 0.5
 
 
     C_value_dictionary_for_model= {}
@@ -28,6 +29,8 @@ def main():
 
     find_optimum_c_value_object = find_optimum_c_value_class(parameters_object_for_optimum_value)
     find_optimum_c_value_object.find_optimum_c_value_method()
+
+    print("time taken for evaluating optimum value", time.time() - start_time)
 
 
 
@@ -43,13 +46,13 @@ class find_optimum_c_value_class:
 
 
     def find_optimum_c_value_method(self):
-
+        start_time_for_evaluating_optimum = time.time()
         # parameters_object_corresponding_to_
 
         lower_bound_of_c_value = round(-1 / self.parameters_object_for_optimum_value.K1_value, 1)
         upper_bound_of_c_value = round(1 / self.parameters_object_for_optimum_value.K2_value, 1)
-        least_count_of_c_values = 0.1
-        C_value_range = np.arange(lower_bound_of_c_value, upper_bound_of_c_value, least_count_of_c_values)
+        least_count_of_c_values = 0.05
+        C_value_range = np.arange(lower_bound_of_c_value + least_count_of_c_values, upper_bound_of_c_value, least_count_of_c_values)
 
 
         C_value_range = np.around(C_value_range, 2)
@@ -87,7 +90,7 @@ class find_optimum_c_value_class:
 
                     run_simulation_object_1 = run_simulation_class(modified_parameters_object_for_optimum_value)
                     winner = run_simulation_object_1.run_simulation_method()
-                    print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
+                    # print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
 
                     if winner != "C1":
                             optimum_flag = 0
@@ -95,10 +98,12 @@ class find_optimum_c_value_class:
             if optimum_flag == 1:
                 optimum_c1_value = k
                 print("the optimum c_value is =", optimum_c1_value)
+
+                print("the the")
                 return optimum_c1_value
 
 
-        print("--- %s seconds for evaluating optimum---" % (time.time() - start_time))
+        print("--- %s seconds for evaluating optimum---" % (time.time() - start_time_for_evaluating_optimum))
 
 
 

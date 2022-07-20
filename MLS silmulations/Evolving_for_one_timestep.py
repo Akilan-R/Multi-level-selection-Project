@@ -1,3 +1,5 @@
+import time
+
 from making_groups import generate_groups
 from population_growth_for_n_groups import population_growth_for_n_groups_class
 from Declaring_winner import declaring_winner_and_ending_simulation
@@ -5,7 +7,7 @@ from Declaring_winner import ending_simulation
 from parameters_class_file import parameters_class
 
 
-
+start_time = time.time()
 
 def main():
     number_of_generations = 1
@@ -69,15 +71,15 @@ class run_simulation_class:
                 new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
 
 
-                print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
+                # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
 
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
 
 
-
-
+                    print("winner of the siumulation is", winner)
+                    # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner
                     break
 

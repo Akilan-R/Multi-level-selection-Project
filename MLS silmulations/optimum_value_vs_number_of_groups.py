@@ -21,8 +21,7 @@ C_value_dictionary_for_model = {}
 
 # Initial_population_size_range = np.arange(500, 10000, 500)
 # Number_of_groups_range = np.arange(100, 1000, 100)
-Number_of_groups_test_range = [10, 100, 1000]
-
+Number_of_groups_test_range = [1, 50, 100, 150, 200]
 
 
 
@@ -31,7 +30,7 @@ optimum_vs_no_of_groups_vs_initial_pop_size_list = []
 optimum_C_value_for_given_number_of_groups_list = []
 
 for Number_of_groups in Number_of_groups_test_range:
-    Initial_population_size = 50*Number_of_groups
+    Initial_population_size = 25*Number_of_groups
 
 
 
@@ -57,7 +56,7 @@ print("optimum_vs_no_of_groups_vs_initial_pop_size_list", optimum_vs_no_of_group
 print( "runtime_of_program", time.time() - start_time)
 
 
-xpoints = Initial_population_size_range
+xpoints = Number_of_groups_test_range
 ypoints = np.array(optimum_C_value_for_given_number_of_groups_list)
 
 
@@ -69,5 +68,5 @@ for ij in zip(xpoints,ypoints):
     ax.annotate('(%s, %s)' % ij, xy=ij, textcoords='data') # <--
 ax.grid()
 plt.show()
-plt.savefig("pop_size_vs_optimum.jpg")
+plt.savefig("optimum_val_vs_number_of_groups.jpg")
 
