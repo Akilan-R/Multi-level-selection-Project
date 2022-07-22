@@ -30,7 +30,6 @@ class population_growth_for_group_class():
             # print("for trait", k, realised_fitness_of_of_given_trait_in_given_group_at_given_generation)
 
 
-
             number_of_individuals_of_given_trait_in_given_group_at_given_generation = group_dictionary_at_given_generation[k]
 
 
@@ -108,7 +107,7 @@ class population_growth_for_group_class():
 
 #
 #
-number_of_generations = 1
+number_of_generations = 10
 
 Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
 

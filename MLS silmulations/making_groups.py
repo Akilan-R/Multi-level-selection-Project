@@ -41,10 +41,13 @@ class generate_groups:
         random.shuffle(self.combined_list_of_individuals)
         size_of_each_group = int(self.Initial_population_size / self.Number_of_groups)
 
+
+        print("self.combined_list_of_individuals", self.combined_list_of_individuals)
+
         self.combined_list_of_groups = [self.combined_list_of_individuals[i * size_of_each_group:(i + 1) * size_of_each_group] for
                                    i in range((len(self.combined_list_of_individuals) + size_of_each_group - 1) // size_of_each_group)]
 
-        # print("combined_list_of_groups", self.combined_list_of_groups)
+        print("combined_list_of_groups", self.combined_list_of_groups)
 
 
     # def convert_groups_to_compact_form(self):
@@ -70,12 +73,16 @@ class generate_groups:
         combined_list_of_groups_in_compact_form = []
         for i in range(self.Number_of_groups):
             number_of_individuals_of_each_trait_in_group_dict = {}
-
+#wa
+            print("self.combined_list_of_groups", i, self.combined_list_of_groups[i])
             number_of_occurences_of_trait_c1 = self.combined_list_of_groups[i].count("C1")
             number_of_individuals_of_each_trait_in_group_dict["C1"] = number_of_occurences_of_trait_c1
 
-            number_of_occurences_of_trait_c2 = self.combined_list_of_groups[i].count("C2")
-            number_of_individuals_of_each_trait_in_group_dict["C2"] = number_of_occurences_of_trait_c2
+            # number_of_occurences_of_trait_c2 = self.combined_list_of_groups[i].count("C2")
+            # number_of_individuals_of_each_trait_in_group_dict["C2"] = number_of_occurences_of_trait_c2
+            number_of_individuals_of_each_trait_in_group_dict["C2"] = 0
+
+            print(number_of_individuals_of_each_trait_in_group_dict)
 
             combined_list_of_groups_in_compact_form.append(number_of_individuals_of_each_trait_in_group_dict)
 

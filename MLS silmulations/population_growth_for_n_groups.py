@@ -90,10 +90,17 @@ class population_growth_for_n_groups_class:
                 sum_of_individuals_with_trait_C2 += group_in_group_list_to_be_pooled["C2"]
 
             total_number_of_individuals = sum_of_individuals_with_trait_C1 + sum_of_individuals_with_trait_C2
-            self.proportion_of_selfish_traits_dictionary_after_pooling["C1"] = sum_of_individuals_with_trait_C1 / total_number_of_individuals
-            self.proportion_of_selfish_traits_dictionary_after_pooling["C2"] = sum_of_individuals_with_trait_C2/ total_number_of_individuals
 
-            # print("self.proportion_of_selfish_traits_dictionary_after_pooling =", self.proportion_of_selfish_traits_dictionary_after_pooling)
+            if total_number_of_individuals != 0:
+                self.proportion_of_selfish_traits_dictionary_after_pooling["C1"] = sum_of_individuals_with_trait_C1 / total_number_of_individuals
+                self.proportion_of_selfish_traits_dictionary_after_pooling["C2"] = sum_of_individuals_with_trait_C2/ total_number_of_individuals
+
+
+            elif total_number_of_individuals == 0:
+                self.proportion_of_selfish_traits_dictionary_after_pooling["C1"] = 0
+                self.proportion_of_selfish_traits_dictionary_after_pooling["C2"] = 0
+
+            print("self.proportion_of_selfish_traits_dictionary_after_pooling =", self.proportion_of_selfish_traits_dictionary_after_pooling)
             # print(self.proportion_of_selfish_traits_dictionary_after_pooling)
 
             return self.proportion_of_selfish_traits_dictionary_after_pooling
@@ -147,41 +154,41 @@ class population_growth_for_n_groups_class:
 
 #
 #
-# number_of_generations = 10
-#
-# Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
-#
-# Initial_population_size = 1000
-#
-# number_of_selfish_traits = 2
-# Number_of_groups = 100
-# K2_value = 2
-# K1_value = 2
-#
-#
-# C_value_dictionary_for_model = {"C1":0, "C2":0.4}
-#
-#
-# parameters_object = parameters_class(C_value_dictionary_for_model, Initial_population_size,
-#                                                            number_of_selfish_traits, Number_of_groups,
-#                                                            Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
-#                                                            K1_value, K2_value)
-#
-#
-#
-#
-#
-# initial_groups_test_value = [{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}]
-#
-#
-#
-# population_growth_for_n_groups_instance = population_growth_for_n_groups_class(parameters_object,
-#                                                                                initial_groups_test_value)
-# # population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
-#
-# print("-------")
+number_of_generations = 10
+
+Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+
+Initial_population_size = 1000
+
+number_of_selfish_traits = 2
+Number_of_groups = 100
+K2_value = 2
+K1_value = 2
+
+
+C_value_dictionary_for_model = {"C1":0, "C2":0.4}
+
+
+parameters_object = parameters_class(C_value_dictionary_for_model, Initial_population_size,
+                                                           number_of_selfish_traits, Number_of_groups,
+                                                           Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
+                                                           K1_value, K2_value)
+
+
+
+
+
+initial_groups_test_value = [{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}, {"C1":50, "C2":50},{"C1":50, "C2":50}]
+
+
+
+population_growth_for_n_groups_instance = population_growth_for_n_groups_class(parameters_object,
+                                                                               initial_groups_test_value)
 # population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
-# population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
+
+print("-------")
+population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
+population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
 
 # def reporting_the_winner():
 #     if trait in
