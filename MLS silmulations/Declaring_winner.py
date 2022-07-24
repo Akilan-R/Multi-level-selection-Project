@@ -6,8 +6,10 @@ def declaring_winner_and_ending_simulation(normalised_population_dictionary_for_
         winner = k
      elif (time_step_number > 100 and normalised_population_dictionary_for_declaring_winner[k] > 0.95) or (time_step_number > 150 and normalised_population_dictionary_for_declaring_winner[k] > 0.85) or (time_step_number > 200 and normalised_population_dictionary_for_declaring_winner[k] > 0.75) or (time_step_number > 350 and normalised_population_dictionary_for_declaring_winner[k] > 0.6) :
         winner = k
-     elif time_step_number > 350:
+   if time_step_number > 400:
          winner = "none"
+
+
    # print("winner_of_the_simulation_is =", winner)
    return winner
 

@@ -7,7 +7,7 @@ import time as time
 def main():
     start_time = time.time()
 
-    number_of_generations = 3
+    number_of_generations = 1
 
     Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
 
@@ -90,16 +90,15 @@ class find_optimum_c_value_class:
 
                     run_simulation_object_1 = run_simulation_class(modified_parameters_object_for_optimum_value)
                     winner = run_simulation_object_1.run_simulation_method()
-                    # print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
+                    print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
 
-                    if winner != "C1":
+                    if winner != "C1":      #if winner == c2 for optimum flag, no winner is considered as a victory for c1. If winner != "c1" wsas there then none considered as loss
                             optimum_flag = 0
                             break
             if optimum_flag == 1:
                 optimum_c1_value = k
                 print("the optimum c_value is =", optimum_c1_value)
 
-                print("the the")
                 return optimum_c1_value
 
 

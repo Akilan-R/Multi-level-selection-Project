@@ -1,4 +1,5 @@
 import time
+import numpy as np
 
 from making_groups import generate_groups
 from population_growth_for_n_groups import population_growth_for_n_groups_class
@@ -20,9 +21,9 @@ def main():
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K1_value = 0.5
-    K2_value = 0.5
+    K2_value = 2
 
-    C_value_dictionary_for_model = {'C1': 1.699, 'C2': 1.7}
+    C_value_dictionary_for_model = {'C1':0.4 , 'C2': 0.15}
 
 
 
@@ -67,8 +68,11 @@ class run_simulation_class:
                     self.parameters_object_for_run_simulation,
                     list_of_groups_for_calculating_population_growth_over_time)
 
-                population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
+                population_growth_for_n_groups_instance.find_list_of_groups_over_generations()
                 new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
+
+
+                # print("new_proportion_of_selfish_traits_dictionary", new_proportion_of_selfish_traits_dictionary)
 
 
                 # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
@@ -76,9 +80,8 @@ class run_simulation_class:
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
+                    print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
 
-
-                    print("winner of the siumulation is", winner)
                     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner
                     break
@@ -103,3 +106,6 @@ class run_simulation_class:
 #
 if __name__ == "__main__":
     main()
+
+
+

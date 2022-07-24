@@ -48,37 +48,7 @@ class population_growth_for_group_class():
         return group_dictionary_at_next_generation
 
 
-    def finding_population_dictionaries_over_time(self, group_dictionary_at_beginning_of_cycle):
 
-
-        # group_dictionary_at_given_generation = group_dictionary_at_beginning_of_cycle
-        # self.group_dictionary_at_given_generation = self.group_dictionary_at_given_generation
-        group_dictionary_at_given_generation_in_pop_dict_over_time = group_dictionary_at_beginning_of_cycle
-        # self.group_dictionaries_over_time_list = [group_dictionary_at_beginning_of_cycle]
-
-
-        for t in range(self.parameters_object.number_of_generations):
-            # print("group_dictionary_at_generation " + str(t), group_dictionary_at_next_generation2)
-            # print("-----" + "generation" + str(t + 1) + "------------")
-
-            group_dictionary_at_next_generation_in_pop_dict_over_time = self.find_group_dictionary_at_next_generation(group_dictionary_at_given_generation_in_pop_dict_over_time)
-            # print("group_dictionary_at_generation " + str(t), group_dictionary_at_next_generation_in_pop_dict_over_time)
-
-            # self.group_dictionaries_over_time_list.append(group_dictionary_at_next_generation_in_pop_dict_over_time)
-            # print("group_dictionaries_over_time_list_temp = ", group_dictionary_at_next_generation_in_pop_dict_over_time)
-
-            group_dictionary_at_given_generation_in_pop_dict_over_time = group_dictionary_at_next_generation_in_pop_dict_over_time
-
-        # print("group_dictionaries_over_time_list = ", self.group_dictionaries_over_time_list)
-
-        population_dictionary_at_the_end_of_n_generations = group_dictionary_at_given_generation_in_pop_dict_over_time
-
-        return population_dictionary_at_the_end_of_n_generations
-
-    # def finding_population_dictionary_at_the_end_of_n_generations(self):
-    #     group_dictionaries_at_the_end_of_n_generations = self.group_dictionaries_over_time_list[-1]
-    #     # print("group_dictionaries_at_the_end_of_n_generations = ", group_dictionaries_at_the_end_of_n_generations)
-    #     return group_dictionaries_at_the_end_of_n_generations
 
 
 
@@ -129,8 +99,8 @@ parameters_object = parameters_class(C_value_dictionary_for_model, Initial_popul
 #
 #
 #
-initial_test_group_dictionary = {'C1': 5, 'C2': 0}
-initial_group_dictionary = initial_test_group_dictionary
+# initial_test_group_dictionary = {'C1': 5, 'C2': 0}
+# initial_group_dictionary = initial_test_group_dictionary
 
 #
 # pg = population_growth_for_group_class()
@@ -140,19 +110,16 @@ initial_group_dictionary = initial_test_group_dictionary
 #
 # initial_group_dictionary = {'C1': 100, 'C2': 100}
 # test_trait = 'C1'
-test_population_growth_class = population_growth_for_group_class(parameters_object)
-test_population_growth_class.find_group_dictionary_at_next_generation(initial_group_dictionary)
-test_population_growth_class.finding_population_dictionaries_over_time(initial_group_dictionary)
+# test_population_growth_class = population_growth_for_group_class(parameters_object)
+# test_population_growth_class.find_group_dictionary_at_next_generation(initial_group_dictionary)
+# test_population_growth_class.finding_population_dictionaries_over_time(initial_group_dictionary)
+
+
+
 # # test_population_growth_class.finding_population_dictionary_at_the_end_of_n_generations()
 
 #
 #
-# initial_group_dictionary = {'C1': 100, 'C2': 100}
-# test_trait = 'C1'
-# test_population_growth_class2 = population_growth_for_group_class(parameters_object)
-# test_population_growth_class2.find_group_dictionary_at_next_generation(initial_group_dictionary)
-# test_population_growth_class2.finding_population_dictionaries_over_time_old(initial_group_dictionary)
-# # test_population_growth_class2.finding_population_dictionary_at_the_end_of_n_generations()
 
 
 #number_of_generations_branch
