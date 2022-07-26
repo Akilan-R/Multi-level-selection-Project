@@ -11,9 +11,8 @@ from parameters_class_file import parameters_class
 start_time = time.time()
 
 def main():
-    number_of_generations = 7
+    number_of_generations = 1
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
@@ -21,20 +20,27 @@ def main():
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K1_value = 0.5
-    K2_value = 0.5
+    K2_value = 4.5
 
-    C_value_dictionary_for_model = {'C1': -1.8 , 'C2': -1.75}
+    C_value_dictionary_for_model = {'C1': -0.1 , 'C2': 0}
+
+    for x in np.arange(0, 0.3, 0.0005):
+
+
+
+        Initial_proportion_of_selfish_traits_dictionary = {"C1": 1 - x, "C2": x}
 
 
 
 
-    parameters_object_for_run_simulation = parameters_class(C_value_dictionary_for_model, Initial_population_size,
-                                         number_of_selfish_traits, Number_of_groups,
-                                         Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
-                                         K1_value, K2_value)
 
-    run_simulation_object = run_simulation_class(parameters_object_for_run_simulation)
-    run_simulation_object.run_simulation_method()
+        parameters_object_for_run_simulation = parameters_class(C_value_dictionary_for_model, Initial_population_size,
+                                             number_of_selfish_traits, Number_of_groups,
+                                             Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
+                                             K1_value, K2_value)
+
+        run_simulation_object = run_simulation_class(parameters_object_for_run_simulation)
+        run_simulation_object.run_simulation_method()
 
 class run_simulation_class:
     def __init__(self, parameters_object_for_run_simulation):
@@ -81,6 +87,7 @@ class run_simulation_class:
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
                     # print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
+                    print("in simulation with", self.parameters_object_for_run_simulation.Initial_proportion_of_selfish_traits_dictionary, "the winner is", winner)
 
                     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner

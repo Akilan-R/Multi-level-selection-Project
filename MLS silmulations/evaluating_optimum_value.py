@@ -7,9 +7,9 @@ import time as time
 def main():
     start_time = time.time()
 
-    number_of_generations = 1
+    number_of_generations = 6
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
 
     Initial_population_size = 1000
 
@@ -90,11 +90,18 @@ class find_optimum_c_value_class:
 
                     run_simulation_object_1 = run_simulation_class(modified_parameters_object_for_optimum_value)
                     winner = run_simulation_object_1.run_simulation_method()
-                    print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
+                    # print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
 
-                    if winner != "C1":      #if winner == c2 for optimum flag, no winner is considered as a victory for c1. If winner != "c1" wsas there then none considered as loss
-                            optimum_flag = 0
-                            break
+                    # if winner != "C1":
+                    #         optimum_flag = 0
+                    #         break
+
+                    # if winner == c2 for optimum flag, no winner (tie) is considered as a victory for c1. If winner != "c1" wsas there then none considered as loss
+                    if winner == "C2":
+                     optimum_flag = 0
+                     break
+
+
             if optimum_flag == 1:
                 optimum_c1_value = k
                 print("the optimum c_value is =", optimum_c1_value)
@@ -102,7 +109,7 @@ class find_optimum_c_value_class:
                 return optimum_c1_value
 
 
-        print("--- %s seconds for evaluating optimum---" % (time.time() - start_time_for_evaluating_optimum))
+        # print("--- %s seconds for evaluating optimum---" % (time.time() - start_time_for_evaluating_optimum))
 
 
 

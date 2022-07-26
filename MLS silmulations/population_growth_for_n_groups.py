@@ -70,7 +70,6 @@ class population_growth_for_n_groups_class:
                 group_dictionary_after_one_generations = self.population_growth_for_group_instance.find_group_dictionary_at_next_generation(list_of_groups_in_current_generation[group_number])
                 list_of_groups_after_one_generation.append(group_dictionary_after_one_generations)
 
-                # print("self.list_of_groups_after_one_generation", self.list_of_groups_after_one_generation)
 
 
                 # print("---n_groups_simulation--")

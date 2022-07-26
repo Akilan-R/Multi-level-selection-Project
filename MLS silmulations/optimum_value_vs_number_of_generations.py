@@ -8,7 +8,7 @@ import pandas as pd
 start_time = time.time()
 
 
-Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
 number_of_selfish_traits = 2
 Initial_population_size = 1000
 Number_of_groups = 100
@@ -16,7 +16,7 @@ K1_value = 0.5
 K2_value = 2
 C_value_dictionary_for_model = {}
 
-number_of_generations_range = np.arange(1, 10, 1)
+number_of_generations_range = np.arange(1, 20, 1)
 
 
 
@@ -26,7 +26,7 @@ number_of_generations_list = []
 
 number_of_generations_vs_optimum_value_dictionary = {}
 for i in number_of_generations_range:
-    print("Initial_population_size_range for finding optimum", i)
+    print("number of generations for finding optimum", i)
     parameters_object_for_optimum_value = parameters_class(C_value_dictionary_for_model, Initial_population_size,
                                                            number_of_selfish_traits, Number_of_groups,
                                                            Initial_proportion_of_selfish_traits_dictionary,
@@ -48,6 +48,16 @@ xpoints = number_of_generations_range
 ypoints = np.array(optimum_value_list_for_given_number_of_generations)
 
 
+
+
+df = pd.DataFrame(list(zip(number_of_generations_list,optimum_value_list_for_given_number_of_generations)),
+                  columns=['number_of_generations', 'optimum_C_value'])
+print(df)
+df.to_csv('change_in_optimum_value_with_number_of_generations.csv')
+df.to_excel('D:\\Research\\Multi-level selection Project\\Results\\change_in_optimum_value_with_number_of_generations_equal_propotions.xlsx')
+
+
+
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.set_ylim(0,10)
@@ -57,10 +67,3 @@ for ij in zip(xpoints,ypoints):
 ax.grid()
 plt.show()
 plt.savefig("no_of_gens_vs_optimum.jpg")
-
-
-
-df = pd.DataFrame(list(zip(number_of_generations_list,optimum_value_list_for_given_number_of_generations)),
-                  columns=['number_of_generations', 'optimum_C_value'])
-print(df)
-df.to_csv('change_in_optimum_value_with_number_of_generations.csv')

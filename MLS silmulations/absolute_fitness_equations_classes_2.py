@@ -60,7 +60,10 @@ class fitness_of_group_class:
 
         size_of_the_group = sum(self.group_population_dictionary_at_given_time.values())
         number_of_occurences_of_trait = self.group_population_dictionary_at_given_time[trait]
-        self.proportions_of_trait_in_a_group = number_of_occurences_of_trait / size_of_the_group
+        if size_of_the_group == 0:
+            self.proportions_of_trait_in_a_group = 0
+        else:
+            self.proportions_of_trait_in_a_group = number_of_occurences_of_trait / size_of_the_group
         return self.proportions_of_trait_in_a_group
             # print("proportions_of_trait_in_a_group =" + str(self.proportions_of_trait_in_a_group))
 

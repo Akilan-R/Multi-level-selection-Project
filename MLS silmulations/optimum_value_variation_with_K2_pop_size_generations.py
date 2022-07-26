@@ -32,7 +32,8 @@ for Initial_population_size in Initial_population_size_range:
     for K2_value in K2_value_range:
         for number_of_generations in number_of_generations_range:
 
-            print("Initial_population_size_range for finding optimum", K2_value_range)
+            print("the parameters are","Initial_population_size =",  Initial_population_size,"K2_value =", K2_value, "number_of_generations", number_of_generations)
+
             parameters_object_for_optimum_value = parameters_class(C_value_dictionary_for_model, Initial_population_size,
                                                                    number_of_selfish_traits, Number_of_groups,
                                                                    Initial_proportion_of_selfish_traits_dictionary,
@@ -79,3 +80,4 @@ print(df)
 #
 
 df.to_csv('change_in_optimum_value_with_different_values_of_k_pop_size_no_of_gens.csv')
+df.to_excel('D:\\Research\\Multi-level selection Project\\Results\\change_in_optimum_value_with_different_values_of_k_pop_size_no_of_gens.xlsx')
