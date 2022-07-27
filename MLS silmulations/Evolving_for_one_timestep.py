@@ -11,9 +11,9 @@ from parameters_class_file import parameters_class
 start_time = time.time()
 
 def main():
-    number_of_generations = 7
+    number_of_generations = 1
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.1}
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
@@ -21,9 +21,9 @@ def main():
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K1_value = 0.5
-    K2_value = 0.5
+    K2_value = 2
 
-    C_value_dictionary_for_model = {'C1': -1.8 , 'C2': -1.75}
+    C_value_dictionary_for_model = {'C1': 0.15 , 'C2': 0.25}
 
 
 
@@ -72,7 +72,6 @@ class run_simulation_class:
                 new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
 
 
-                # print("new_proportion_of_selfish_traits_dictionary", new_proportion_of_selfish_traits_dictionary)
 
 
                 # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)

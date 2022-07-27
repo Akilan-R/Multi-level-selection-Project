@@ -7,9 +7,9 @@ import time as time
 def main():
     start_time = time.time()
 
-    number_of_generations = 6
+    number_of_generations = 19
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
 
     Initial_population_size = 1000
 
@@ -90,7 +90,7 @@ class find_optimum_c_value_class:
 
                     run_simulation_object_1 = run_simulation_class(modified_parameters_object_for_optimum_value)
                     winner = run_simulation_object_1.run_simulation_method()
-                    # print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
+                    print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
 
                     # if winner != "C1":
                     #         optimum_flag = 0
