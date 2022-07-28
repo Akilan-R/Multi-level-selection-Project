@@ -64,6 +64,7 @@ class fitness_of_group_class:
         return self.proportions_of_trait_in_a_group
             # print("proportions_of_trait_in_a_group =" + str(self.proportions_of_trait_in_a_group))
 
+
     def fitness_of_a_group(self):
         group_fitness = 0
         for k in self.group_population_dictionary_at_given_time:

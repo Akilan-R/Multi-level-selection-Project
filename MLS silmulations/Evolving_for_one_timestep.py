@@ -12,7 +12,9 @@ start_time = time.time()
 def main():
     number_of_generations = 1
 
+    # Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.333, "C2": 0.333, "C3":0.334}
     Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
+
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
@@ -20,9 +22,11 @@ def main():
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K1_value = 0.5
-    K2_value = 0.5
+    K2_value = 2
 
-    C_value_dictionary_for_model = {'C1': 1.699, 'C2': 1.7}
+    # C_value_dictionary_for_model = {'C1': 0.4, 'C2': 0.5,"C3":0.6}
+    C_value_dictionary_for_model = {'C1': -0.1, 'C2': 0}
+
 
 
 
@@ -50,7 +54,7 @@ class run_simulation_class:
 
 
 
-
+                # print("new_proportion_of_selfish_traits_dictionary at", time_step_number, "is", new_proportion_of_selfish_traits_dictionary, )
 
                 generating_groups_instance = generate_groups(self.parameters_object_for_run_simulation, new_proportion_of_selfish_traits_dictionary)
                 generating_groups_instance.generate_list_of_individuals()
@@ -68,17 +72,26 @@ class run_simulation_class:
                     list_of_groups_for_calculating_population_growth_over_time)
 
                 population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
-                new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
+                population_growth_for_n_groups_instance.find_pooled_dictionary()
+                new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.finding_normalised_group_dictionary_afer_pooling()
 
 
                 # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
+
+                #
+                # if time_step_number > 700:
+                #     break
+
+
+
+
 
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
 
 
-                    print("winner of the siumulation is", winner)
+                    # print("winner of the siumulation is", winner)
                     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner
                     break

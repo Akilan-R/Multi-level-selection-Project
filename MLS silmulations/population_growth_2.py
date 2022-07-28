@@ -26,6 +26,7 @@ class population_growth_for_group_class():
 
             C_value = self.parameters_object.C_value_dictionary[k]
 
+
             realised_fitness_of_of_given_trait_in_given_group_at_given_generation =  self.find_realised_fitness_function(C_value, group_dictionary_at_given_generation)
             # print("for trait", k, realised_fitness_of_of_given_trait_in_given_group_at_given_generation)
 
@@ -110,7 +111,7 @@ class population_growth_for_group_class():
 #
 number_of_generations = 1
 
-Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
+Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5, "C3": 0.3}
 
 Initial_population_size = 1000
 
@@ -120,7 +121,7 @@ K2_value = 2
 K1_value = 2
 
 
-C_value_dictionary_for_model = {"C1":0.1, "C2":0.4}
+C_value_dictionary_for_model = {"C1":0.1, "C2":0.4, "C3":0.2}
 #
 #
 parameters_object = parameters_class(C_value_dictionary_for_model, Initial_population_size,
@@ -130,7 +131,7 @@ parameters_object = parameters_class(C_value_dictionary_for_model, Initial_popul
 #
 #
 #
-initial_test_group_dictionary = {'C1': 5, 'C2': 0}
+initial_test_group_dictionary = {'C1': 5, 'C2': 3, 'C3': 4}
 initial_group_dictionary = initial_test_group_dictionary
 
 #
@@ -141,9 +142,9 @@ initial_group_dictionary = initial_test_group_dictionary
 #
 # initial_group_dictionary = {'C1': 100, 'C2': 100}
 # test_trait = 'C1'
-test_population_growth_class = population_growth_for_group_class(parameters_object)
-test_population_growth_class.find_group_dictionary_at_next_generation(initial_group_dictionary)
-test_population_growth_class.finding_population_dictionaries_over_time(initial_group_dictionary)
+# test_population_growth_class = population_growth_for_group_class(parameters_object)
+# test_population_growth_class.find_group_dictionary_at_next_generation(initial_group_dictionary)
+# test_population_growth_class.finding_population_dictionaries_over_time(initial_group_dictionary)
 # # test_population_growth_class.finding_population_dictionary_at_the_end_of_n_generations()
 
 #
@@ -156,4 +157,3 @@ test_population_growth_class.finding_population_dictionaries_over_time(initial_g
 # # test_population_growth_class2.finding_population_dictionary_at_the_end_of_n_generations()
 
 
-print("hello")
