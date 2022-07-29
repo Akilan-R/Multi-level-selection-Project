@@ -29,6 +29,9 @@ class generate_groups:
         print("proportion_of_selfish_traits_dictionary = " + str(self.proportion_of_selfish_traits_dictionary))
 
     def generate_list_of_individuals(self):
+
+        # print( "self.proportion_of_selfish_traits_dictionary in making groups", self.proportion_of_selfish_traits_dictionary)
+
         for k in self.proportion_of_selfish_traits_dictionary:
             number_of_individuals = round(self.proportion_of_selfish_traits_dictionary[k] * self.Initial_population_size)
             # print("number_of_individuals", k, "=",number_of_individuals )
@@ -40,9 +43,6 @@ class generate_groups:
     def generate_group(self):
         random.shuffle(self.combined_list_of_individuals)
         size_of_each_group = int(self.Initial_population_size / self.Number_of_groups)
-
-
-        # print("self.combined_list_of_individuals", self.combined_list_of_individuals)
 
         self.combined_list_of_groups = [self.combined_list_of_individuals[i * size_of_each_group:(i + 1) * size_of_each_group] for
                                    i in range((len(self.combined_list_of_individuals) + size_of_each_group - 1) // size_of_each_group)]
@@ -73,17 +73,16 @@ class generate_groups:
         combined_list_of_groups_in_compact_form = []
         for i in range(self.Number_of_groups):
             number_of_individuals_of_each_trait_in_group_dict = {}
-#wa
-            # print("self.combined_list_of_groups", i, self.combined_list_of_groups[i])
-            number_of_occurences_of_trait_c1 = self.combined_list_of_groups[i].count("C1")
-            number_of_individuals_of_each_trait_in_group_dict["C1"] = number_of_occurences_of_trait_c1
 
-            number_of_occurences_of_trait_c2 = self.combined_list_of_groups[i].count("C2")
-            number_of_individuals_of_each_trait_in_group_dict["C2"] = number_of_occurences_of_trait_c2
+            for trait in self.proportion_of_selfish_traits_dictionary:
 
-            # print(number_of_individuals_of_each_trait_in_group_dict)
+
+                number_of_occurences_of_the_trait = self.combined_list_of_groups[i].count(trait)
+                number_of_individuals_of_each_trait_in_group_dict[trait] = number_of_occurences_of_the_trait
 
             combined_list_of_groups_in_compact_form.append(number_of_individuals_of_each_trait_in_group_dict)
+
+        # print("combined_list_of_groups_in_compact_form", combined_list_of_groups_in_compact_form)
 
         combined_list_of_groups_in_compact_form_array = np.array(combined_list_of_groups_in_compact_form)
 
@@ -102,38 +101,38 @@ class generate_groups:
         # print("combined_list_of_groups_in_compact_form_array",combined_list_of_groups_in_compact_form_array)
         return combined_list_of_groups_in_compact_form_array
 
-# proportion_of_selfish_traits_dictionary = {"C1": 0.6, "C2": 0.4}
+proportion_of_selfish_traits_dictionary = {"C1": 0.3, "C2": 0.4, "C3": 0.3}
 
 
-# number_of_generations = 1
-#
-# Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
-# # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
-#
-# Initial_population_size = 1000
-#
-# number_of_selfish_traits = 2
-# Number_of_groups = 100
-# K1_value = 0.5
-# K2_value = 0.5
-#
-# C_value_dictionary_for_model = {'C1': 0, 'C2': 1}
+number_of_generations = 1
+
+Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.3, "C2": 0.4, "C3": 0.3}
+# C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
+
+Initial_population_size = 1000
+
+number_of_selfish_traits = 3
+Number_of_groups = 100
+K1_value = 0.5
+K2_value = 0.5
+
+C_value_dictionary_for_model = {'C1': 0, 'C2': 1, 'C3': 0.5}
 
 
 
 
-# parameters_object_for_making_groups = parameters_class(C_value_dictionary_for_model, Initial_population_size,
-#                                      number_of_selfish_traits, Number_of_groups,
-#                                      Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
-#                                      K1_value, K2_value)
-#
-#
+parameters_object_for_making_groups = parameters_class(C_value_dictionary_for_model, Initial_population_size,
+                                     number_of_selfish_traits, Number_of_groups,
+                                     Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
+                                     K1_value, K2_value)
+
+
 # g1 = generate_groups(parameters_object_for_making_groups, Initial_proportion_of_selfish_traits_dictionary)
 # g1.print_input_paramaters()
 # g1.generate_list_of_individuals()
 # g1.generate_group()
 # g1.convert_groups_to_compact_form()
-#
+
 
 
 # g2 = generate_groups(parameters_object_for_making_groups, Initial_proportion_of_selfish_traits_dictionary)

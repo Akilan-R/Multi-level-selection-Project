@@ -11,9 +11,9 @@ from parameters_class_file import parameters_class
 start_time = time.time()
 
 def main():
-    number_of_generations = 1
+    number_of_generations = 5
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.1}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.334, "C2": 0.333, "C3": 0.333}
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
@@ -21,9 +21,9 @@ def main():
     number_of_selfish_traits = 2
     Number_of_groups = 100
     K1_value = 0.5
-    K2_value = 2
+    K2_value = 0.5
 
-    C_value_dictionary_for_model = {'C1': 0.15 , 'C2': 0.25}
+    C_value_dictionary_for_model = {'C1': 1.8, 'C2': 1.4, "C3": 1.7}
 
 
 
@@ -47,7 +47,7 @@ class run_simulation_class:
             while(True):
                 time_step_number = time_step_number + 1
                 # print("------------------------------------------")
-                # print("time_step_number =",time_step_number)
+                print("time_step_number =",time_step_number)
 
 
 
@@ -67,14 +67,14 @@ class run_simulation_class:
                 population_growth_for_n_groups_instance = population_growth_for_n_groups_class(
                     self.parameters_object_for_run_simulation,
                     list_of_groups_for_calculating_population_growth_over_time)
-
-                population_growth_for_n_groups_instance.find_list_of_groups_over_generations()
-                new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
-
-
+                list_of_groups_after_one_time_step = population_growth_for_n_groups_instance.find_list_of_groups_over_generations()
+                pooled_group_dictionary_after_one_time_step = population_growth_for_n_groups_instance.find_pooled_group_dictionary(list_of_groups_after_one_time_step)
+                new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_after_one_time_step)
 
 
-                # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
+
+
+                print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
 
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)

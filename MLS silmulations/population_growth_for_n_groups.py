@@ -88,21 +88,34 @@ class population_growth_for_n_groups_class:
                 # print("-----" + "generation" + str(t + 1) + "------------")
 
                 list_of_groups_at_next_generation_in_pop_dict_over_time = self.list_of_groups_afer_one_generation(list_of_groups_at_GIVEN_generation_in_pop_dict_over_time)
-                # print("group_dictionary_at_generation " + str(t + 1), list_of_groups_at_next_generation_in_pop_dict_over_time)
+                # print("list_of_groups_at_next_generation_in_pop_dict_over_time " + str(t + 1), list_of_groups_at_next_generation_in_pop_dict_over_time)
+
+
+                pooled_group_dictionary_at_next_generation = self.find_pooled_group_dictionary(list_of_groups_at_next_generation_in_pop_dict_over_time)
+                normalised_dictionary_at_next_generation = self.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_at_next_generation)
+                print("normalised_dictionary_at_next_generation at generation",str(t + 1) , "=", normalised_dictionary_at_next_generation)
 
 
 
                 # print("group_dictionaries_over_time_list_temp = ", group_dictionary_at_next_generation_in_pop_dict_over_time)
 
+                for trait in parameters_object.C_value_dictionary:
+                    if pooled_group_dictionary_at_next_generation[trait] == 0:
+                     break
 
-                sum_of_individuals_with_trait_C1_in_group = 0
-                sum_of_individuals_with_trait_C2_in_group = 0
-                for group_in_group_list_to_be_pooled in list_of_groups_at_next_generation_in_pop_dict_over_time:  #
+                for trait in parameters_object.C_value_dictionary:
+
+
+                  sum_of_individuals_with_trait_in_group = 0
+                  for group_in_group_list_to_be_pooled in list_of_groups_at_next_generation_in_pop_dict_over_time:  #
                     # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
-                    sum_of_individuals_with_trait_C1_in_group += group_in_group_list_to_be_pooled["C1"]
-                    sum_of_individuals_with_trait_C2_in_group += group_in_group_list_to_be_pooled["C2"]
+                        sum_of_individuals_with_trait = 0
 
-                if sum_of_individuals_with_trait_C1_in_group == 0 or sum_of_individuals_with_trait_C2_in_group == 0:
+                        sum_of_individuals_with_trait_in_group += group_in_group_list_to_be_pooled[trait]
+
+
+
+                  if sum_of_individuals_with_trait_in_group == 0:
                     break
                 list_of_groups_at_GIVEN_generation_in_pop_dict_over_time = list_of_groups_at_next_generation_in_pop_dict_over_time
 
@@ -117,44 +130,53 @@ class population_growth_for_n_groups_class:
 
 
 
-        def find_normalised_groups_dictionary_after_pooling(self):
+        def find_pooled_group_dictionary(self, list_of_groups_to_be_pooled):
 
             start_time = timer()
+            population_dictionary_after_pooling = {}
+            for trait in self.parameters_object.C_value_dictionary:
+
+                sum_of_individuals_with_trait = 0
+                for group_in_group_list_to_be_pooled in list_of_groups_to_be_pooled:
+                    # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
+                    sum_of_individuals_with_trait +=  group_in_group_list_to_be_pooled[trait]
+
+                population_dictionary_after_pooling[trait] = sum_of_individuals_with_trait
+
+            # print("self.population_dictionary_after_pooling",self.population_dictionary_after_pooling)
+
+
+            # use mu
             #
-            # for trait in self.parameters_object.C_value_dictionary:
             #
-            #     sum_of_individuals_with_trait = 0
-            #     for group_in_group_list_to_be_pooled in self.list_of_groups_after_n_generations:
-            #         # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
-            #         sum_of_individuals_with_trait +=  group_in_group_list_to_be_pooled[trait] #
+            #
+            #
+            #
+            # ltiple traits
 
 
-            # use multiple traits
+            #
+            # sum_of_individuals_with_trait_C1 = 0
+            # # print("self.list_of_groups_after_n_generations", self.list_of_groups_after_n_generations)
+            # proportion_of_selfish_traits_dictionary_after_pooling = {}
+            # for group_in_group_list_to_be_pooled in self.list_of_groups_after_n_generations:
+            #     # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
+            #     sum_of_individuals_with_trait_C1 += group_in_group_list_to_be_pooled["C1"]
 
 
 
-            sum_of_individuals_with_trait_C1 = 0
-            # print("self.list_of_groups_after_n_generations", self.list_of_groups_after_n_generations)
-            proportion_of_selfish_traits_dictionary_after_pooling = {}
-            for group_in_group_list_to_be_pooled in self.list_of_groups_after_n_generations:
-                # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
-                sum_of_individuals_with_trait_C1 += group_in_group_list_to_be_pooled["C1"]
-
-            self.population_dictionary_after_pooling["C1"] = sum_of_individuals_with_trait_C1
-
-
-            sum_of_individuals_with_trait_C2 = 0
-            for group_in_group_list_to_be_pooled in self.list_of_groups_after_n_generations:
-
-
-                # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
-                sum_of_individuals_with_trait_C2 += group_in_group_list_to_be_pooled["C2"]
-
-            total_number_of_individuals = sum_of_individuals_with_trait_C1 + sum_of_individuals_with_trait_C2
-
-            if total_number_of_individuals != 0:
-                proportion_of_selfish_traits_dictionary_after_pooling["C1"] = sum_of_individuals_with_trait_C1 / total_number_of_individuals
-                proportion_of_selfish_traits_dictionary_after_pooling["C2"] = sum_of_individuals_with_trait_C2/ total_number_of_individuals
+            # sum_of_individuals_with_trait_C2 = 0
+            # for group_in_group_list_to_be_pooled in self.list_of_groups_after_n_generations:
+            #
+            #
+            #     # print(number_of_individuals_with_trait, "number_of_individuals_with_trait")
+            #     sum_of_individuals_with_trait_C2 += group_in_group_list_to_be_pooled["C2"]
+            #
+            # total_number_of_individuals = sum_of_individuals_with_trait_C1 + sum_of_individuals_with_trait_C2
+            #
+            # if total_number_of_individuals != 0:
+            #     proportion_of_selfish_traits_dictionary_after_pooling["C1"] = sum_of_individuals_with_trait_C1 / total_number_of_individuals
+            #     proportion_of_selfish_traits_dictionary_after_pooling["C2"] = sum_of_individuals_with_trait_C2/ total_number_of_individuals
             #
             #
             # elif total_number_of_individuals == 0:
@@ -164,19 +186,20 @@ class population_growth_for_n_groups_class:
             # print("self.proportion_of_selfish_traits_dictionary_after_pooling =", proportion_of_selfish_traits_dictionary_after_pooling)
             # print(self.proportion_of_selfish_traits_dictionary_after_pooling)
 
-            return proportion_of_selfish_traits_dictionary_after_pooling
+            return population_dictionary_after_pooling
 
 
 
-        # def finding_normalised_group_dictionary_afer_pooling(self):
-        #     total_number_of_individuals = sum(self.population_dictionary_after_pooling.values())
-        #
-        #     # for trait_of_pooled_group_dictionary in self.population_dictionary_after_pooling:
-        #     #     number_of_individuals_of_trait_in_pooled_group_dictionary =  self.population_dictionary_after_pooling[trait_of_pooled_group_dictionary]
-        #     #     proportion_of_individuals_of_trait_in_pooled_group_dictionary = number_of_individuals_of_trait_in_pooled_group_dictionary/total_number_of_individuals
-        #     #     self.proportion_of_selfish_traits_dictionary_after_pooling[trait_of_pooled_group_dictionary] = proportion_of_individuals_of_trait_in_pooled_group_dictionary
-        #
-        #     # print("self.proportion_of_selfish_traits_dictionary_after_pooling =", self.proportion_of_selfish_traits_dictionary_after_pooling)
+        def finding_normalised_group_dictionary_afer_pooling(self, population_dictionary_after_pooling):
+            total_number_of_individuals = sum(population_dictionary_after_pooling.values())
+            proportion_of_selfish_traits_dictionary_after_pooling = {}
+            for trait_of_pooled_group_dictionary in population_dictionary_after_pooling:
+
+                number_of_individuals_of_trait_in_pooled_group_dictionary =  population_dictionary_after_pooling[trait_of_pooled_group_dictionary]
+                proportion_of_individuals_of_trait_in_pooled_group_dictionary = number_of_individuals_of_trait_in_pooled_group_dictionary/total_number_of_individuals
+                proportion_of_selfish_traits_dictionary_after_pooling[trait_of_pooled_group_dictionary] = proportion_of_individuals_of_trait_in_pooled_group_dictionary
+
+            # print("self.proportion_of_selfish_traits_dictionary_after_pooling =", self.proportion_of_selfish_traits_dictionary_after_pooling)
         #
         #     #use above box if you are gonna compete more more than two traits
         #
@@ -192,7 +215,7 @@ class population_growth_for_n_groups_class:
         #
         #         self.population_growth_of_n_groups_over_time()
         #         self.find_normalised_groups_dictionary_after_pooling()
-        #         return self.proportion_of_selfish_traits_dictionary_after_pooling
+            return proportion_of_selfish_traits_dictionary_after_pooling
 
 
 
@@ -244,8 +267,8 @@ initial_groups_test_value2 = [{'C1': 30.0, 'C2': 54.0}, {'C1': 30.0, 'C2': 54.0}
 
 # population_growth_for_n_groups_instance = population_growth_for_n_groups_class(parameters_object,
 #                                                                                initial_groups_test_value2)
-# # population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
-#
+# population_growth_for_n_groups_instance.population_growth_of_n_groups_over_time()
+
 # population_growth_for_n_groups_instance.find_list_of_groups_over_generations()
 # population_growth_for_n_groups_instance.find_normalised_groups_dictionary_after_pooling()
 
@@ -255,6 +278,5 @@ initial_groups_test_value2 = [{'C1': 30.0, 'C2': 54.0}, {'C1': 30.0, 'C2': 54.0}
 
 # population_growth_for_n_groups_class =
 #construct function and cal it. Give proper daes.
-
 
 
