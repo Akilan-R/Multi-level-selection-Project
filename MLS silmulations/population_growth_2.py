@@ -34,7 +34,7 @@ class population_growth_for_group_class():
 
 
             number_of_individuals_of_given_trait_in_given_group_at_next_generation = number_of_individuals_of_given_trait_in_given_group_at_given_generation*realised_fitness_of_of_given_trait_in_given_group_at_given_generation
-            if number_of_individuals_of_given_trait_in_given_group_at_next_generation < 0.05:
+            if number_of_individuals_of_given_trait_in_given_group_at_next_generation < 0.005:
 
                 number_of_individuals_of_given_trait_in_given_group_at_next_generation = 0
 

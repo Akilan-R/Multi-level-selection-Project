@@ -14,19 +14,33 @@ def main():
     number_of_generations = 1
 
     # Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.333, "C2": 0.333, "C3": 0.334}
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.3, "C2": 0.7}
-
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
 
-    number_of_selfish_traits = 2
+    number_of_selfish_traits = 5
+
+
+
     Number_of_groups = 100
     K1_value = 0.5
     K2_value = 2
 
-    # C_value_dictionary_for_model = {'C1': -0.1, 'C2': 0, "C3": -0.2}
-    C_value_dictionary_for_model = {'C1': 1.6, 'C2': 1.7}
+    C_value_dictionary_for_model = {'C1': -0.1, 'C2': 0, "C3": -0.2, "C4": 0.3, "C5": 0.1}
+
+    Initial_proportion_of_selfish_traits_dictionary = {}
+
+
+    for i in range(number_of_selfish_traits):
+        trait = "C" + str(i + 1)
+
+        if i + 1 < number_of_selfish_traits:
+            Initial_proportion_of_selfish_traits_dictionary[trait] = round(1/number_of_selfish_traits, 4)
+        if i + 1 == number_of_selfish_traits:
+            Initial_proportion_of_selfish_traits_dictionary[trait] = 1 - sum(Initial_proportion_of_selfish_traits_dictionary.values())
+
+
+
 
 
 
@@ -49,7 +63,7 @@ class run_simulation_class:
             while(True):
                 time_step_number = time_step_number + 1
                 # print("------------------------------------------")
-                # print("time_step_number =",time_step_number)
+                print("--------------------", "time_step_number =",time_step_number)
 
 
 
@@ -59,7 +73,7 @@ class run_simulation_class:
                 generating_groups_instance.generate_list_of_individuals()
                 generating_groups_instance.generate_group()
                 list_of_groups_for_calculating_population_growth_over_time =  generating_groups_instance.convert_groups_to_compact_form()
-                print("list_of_groups_at", time_step_number, " =", list_of_groups_for_calculating_population_growth_over_time)
+                # print("list_of_groups_at", time_step_number, " =", list_of_groups_for_calculating_population_growth_over_time)
 
 
 
@@ -81,7 +95,7 @@ class run_simulation_class:
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
-                    print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
+                    # print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
 
                     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner

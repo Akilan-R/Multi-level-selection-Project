@@ -92,16 +92,18 @@ class population_growth_for_n_groups_class:
 
 
                 pooled_group_dictionary_at_next_generation = self.find_pooled_group_dictionary(list_of_groups_at_next_generation_in_pop_dict_over_time)
-                normalised_dictionary_at_next_generation = self.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_at_next_generation)
-                print("normalised_dictionary_at_next_generation at generation",str(t + 1) , "=", normalised_dictionary_at_next_generation)
+
 
 
 
                 # print("group_dictionaries_over_time_list_temp = ", group_dictionary_at_next_generation_in_pop_dict_over_time)
 
-                for trait in parameters_object.C_value_dictionary:
-                    if pooled_group_dictionary_at_next_generation[trait] == 0:
-                     break
+                if sum(pooled_group_dictionary_at_next_generation.values()) == 0:
+                    break
+
+                normalised_dictionary_at_next_generation = self.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_at_next_generation)
+                print("normalised_dictionary_at_next_generation at generation", str(t + 1), "=", normalised_dictionary_at_next_generation)
+
 
                 for trait in parameters_object.C_value_dictionary:
 

@@ -1,16 +1,23 @@
-# importing pandas as pd
-import pandas as pd
+import numpy as np
 
-# list of name, degree, score
-nme = ["aparna", "pankaj", "sudhir", "Geeku"]
-deg = ["MBA", "BCA", "M.Tech", "MBA"]
-scr = [90, 40, 80, 98]
+lower_bound_of_c_value = round(-1 / 0.5, 1)
+upper_bound_of_c_value = round(1 / 0.5, 1)
+least_count_of_c_values = 0.1
 
-# dictionary of lists
-dict = {'name': nme, 'degree': deg, 'score': scr}
+C_value_range = np.arange(lower_bound_of_c_value + least_count_of_c_values, upper_bound_of_c_value,
+                          least_count_of_c_values)
 
-df = pd.DataFrame(dict)
+C_value_range = np.around(C_value_range, 2)
 
-# saving the dataframe
-df.to_excel('file1.xlsx')
-df.to_excel('D:\\Research\\Multi-level selection Project\\Results\\file1.xlsx')
+number_of_selfish_traits = len(C_value_range)
+
+selfish_traits_dictionary = {}
+
+for i in range(number_of_selfish_traits):
+    trait = "C" + str(i + 1)
+
+    selfish_traits_dictionary[trait] = C_value_range[i]
+
+
+print(selfish_traits_dictionary)
+

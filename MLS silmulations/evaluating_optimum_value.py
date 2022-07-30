@@ -7,15 +7,15 @@ import time as time
 def main():
     start_time = time.time()
 
-    number_of_generations = 19
+    number_of_generations = 5
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
 
     Initial_population_size = 1000
 
     number_of_selfish_traits = 2
     Number_of_groups = 100
-    K2_value = 2
+    K2_value = 0.5
     K1_value = 0.5
 
 
@@ -51,7 +51,7 @@ class find_optimum_c_value_class:
 
         lower_bound_of_c_value = round(-1 / self.parameters_object_for_optimum_value.K1_value, 1)
         upper_bound_of_c_value = round(1 / self.parameters_object_for_optimum_value.K2_value, 1)
-        least_count_of_c_values = 0.05
+        least_count_of_c_values = 0.1
         C_value_range = np.arange(lower_bound_of_c_value + least_count_of_c_values, upper_bound_of_c_value, least_count_of_c_values)
 
 
