@@ -81,7 +81,7 @@ class generate_groups:
 
         combined_list_of_groups_in_compact_form_array = np.array(combined_list_of_groups_in_compact_form)
 
-
+        print("combined_list_of_groups_in_compact_form_array", combined_list_of_groups_in_compact_form_array)
         #testing theory
 
 

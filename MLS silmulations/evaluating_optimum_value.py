@@ -9,7 +9,7 @@ def main():
 
     number_of_generations = 3
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.99, "C2": 0.01}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
 
     Initial_population_size = 1000
 
@@ -51,7 +51,7 @@ class find_optimum_c_value_class:
 
         lower_bound_of_c_value = round(-1 / self.parameters_object_for_optimum_value.K1_value, 1)
         upper_bound_of_c_value = round(1 / self.parameters_object_for_optimum_value.K2_value, 1)
-        least_count_of_c_values = 0.05
+        least_count_of_c_values = 0.1
         C_value_range = np.arange(lower_bound_of_c_value + least_count_of_c_values, upper_bound_of_c_value, least_count_of_c_values)
 
 
@@ -67,7 +67,7 @@ class find_optimum_c_value_class:
             for l in C_value_range:
 
 
-                C_value_dictionary_for_model = {"C1": k, "C2": l}
+                C_value_dictionary_for_model = {"C1": 0.3, "C2": l}
                 Initial_population_size = self.parameters_object_for_optimum_value.Initial_population_size
                 number_of_selfish_traits = self.parameters_object_for_optimum_value.number_of_selfish_traits
                 Number_of_groups = self.parameters_object_for_optimum_value.Number_of_groups
@@ -90,7 +90,7 @@ class find_optimum_c_value_class:
 
                     run_simulation_object_1 = run_simulation_class(modified_parameters_object_for_optimum_value)
                     winner = run_simulation_object_1.run_simulation_method()
-                    # print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
+                    print("in_simulation_with", modified_parameters_object_for_optimum_value.C_value_dictionary, "the_winner_is", winner)
 
                     if winner != "C1":
                             optimum_flag = 0

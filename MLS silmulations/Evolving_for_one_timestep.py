@@ -12,7 +12,7 @@ start_time = time.time()
 def main():
     number_of_generations = 1
 
-    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.5, "C2": 0.5}
+    Initial_proportion_of_selfish_traits_dictionary = {"C1": 0.98 ,"C2": 0.02}
     # C_value_dictionary_for_model = {'C1': 0, 'C2': 0}
 
     Initial_population_size = 1000
@@ -22,7 +22,7 @@ def main():
     K1_value = 0.5
     K2_value = 0.5
 
-    C_value_dictionary_for_model = {'C1': 1.699, 'C2': 1.7}
+    C_value_dictionary_for_model = {'C1': -0.1, 'C2': 0}
 
 
 
@@ -73,12 +73,15 @@ class run_simulation_class:
 
                 # print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
 
+
+                # if time_step_number > 1000:
+
                 if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
                     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
                     # print("number_of_time_steps = ", time_step_number)
 
 
-                    print("winner of the siumulation is", winner)
+                    # print("in simulation with", winner of the siumulation is", winner)
                     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
                     return winner
                     break
