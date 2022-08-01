@@ -6,7 +6,6 @@ from population_growth_for_n_groups import population_growth_for_n_groups_class
 from Declaring_winner import declaring_winner_and_ending_simulation
 from Declaring_winner import ending_simulation
 from parameters_class_file import parameters_class
-import numpy as np
 
 start_time = time.time()
 
@@ -19,20 +18,22 @@ def main():
     Initial_population_size = 1000
 
 
-    lower_bound_of_c_value = round(-1 / 0.5, 1)
-    upper_bound_of_c_value = round(1 / 0.5, 1)
-    least_count_of_c_values = 0.1
+
+
+
+    Number_of_groups = 100
+    K1_value = 0.5
+    K2_value = 4
+
+    lower_bound_of_c_value = round(-1 /K1_value, 1)
+    upper_bound_of_c_value = round(1 /K2_value, 1)
+    least_count_of_c_values = 0.05
 
     C_value_range = np.arange(lower_bound_of_c_value + least_count_of_c_values, upper_bound_of_c_value,
                               least_count_of_c_values)
 
     C_value_range = np.around(C_value_range, 2)
     number_of_selfish_traits = len(C_value_range)
-
-
-    Number_of_groups = 100
-    K1_value = 0.5
-    K2_value = 2
 
 
     Initial_proportion_of_selfish_traits_dictionary = {}
@@ -45,13 +46,15 @@ def main():
         C_value_dictionary_for_model[trait] = C_value_range[i]
 
 
-        if i + 1 < number_of_selfish_traits:
-            Initial_proportion_of_selfish_traits_dictionary[trait] = round(1/number_of_selfish_traits, 4)
-        if i + 1 == number_of_selfish_traits:
-            Initial_proportion_of_selfish_traits_dictionary[trait] = 1 - sum(Initial_proportion_of_selfish_traits_dictionary.values())
+        # if i + 1 < number_of_selfish_traits:
+        Initial_proportion_of_selfish_traits_dictionary[trait] = round(1/number_of_selfish_traits, 4)
+        # if i + 1 == number_of_selfish_traits:
+        #     Initial_proportion_of_selfish_traits_dictionary[trait] = 1 - sum(Initial_proportion_of_selfish_traits_dictionary.values())
 
     print("C_value_dictionary_for_model", C_value_dictionary_for_model)
     print("Initial_proportion_of_selfish_traits_dictionary", Initial_proportion_of_selfish_traits_dictionary)
+
+
     parameters_object_for_run_simulation = parameters_class(C_value_dictionary_for_model, Initial_population_size,
                                          number_of_selfish_traits, Number_of_groups,
                                          Initial_proportion_of_selfish_traits_dictionary, number_of_generations,
@@ -71,8 +74,8 @@ class run_simulation_class:
             new_proportion_of_selfish_traits_dictionary = self.parameters_object_for_run_simulation.Initial_proportion_of_selfish_traits_dictionary
             while(True):
                 time_step_number = time_step_number + 1
-                # print("------------------------------------------")
-                print("--------------------", "time_step_number =",time_step_number)
+                # # print("------------------------------------------")
+                # print("--------------------", "time_step_number =",time_step_number)
 
 
 
@@ -97,24 +100,28 @@ class run_simulation_class:
                 new_proportion_of_selfish_traits_dictionary = population_growth_for_n_groups_instance.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_after_one_time_step)
 
 
-                if time_step_number > 1000:
+                if time_step_number > 2500:
                     break
 
-                print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", new_proportion_of_selfish_traits_dictionary)
+                print("new_proportion_of_selfish_traits_dictionary", "at time step_number", time_step_number,"=", self.round_off_and_convert_to_percentage_proportion_dictionary(new_proportion_of_selfish_traits_dictionary))
 
-                if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
-                    winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
-                    # print("number_of_time_steps = ", time_step_number)
-                    # print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
-
-                    # print("time taken for evolving over one timestep simulation", time.time() - start_time)
-                    return winner
-                    break
+                # if declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number) != "X":
+                #     winner = declaring_winner_and_ending_simulation(new_proportion_of_selfish_traits_dictionary, time_step_number)
+                #     # print("number_of_time_steps = ", time_step_number)
+                #     # print("in simulation with", self.parameters_object_for_run_simulation.C_value_dictionary, "the winner is", winner)
+                #
+                #     # print("time taken for evolving over one timestep simulation", time.time() - start_time)
+                #     return winner
+                #     break
 
 
                 # parameters.proportion_of_selfish_traits_dictionary = new_proportion_of_selfish_traits_dictionary
 
-
+    def round_off_and_convert_to_percentage_proportion_dictionary(self, dictionary_to_round_off):
+        rounded_off_dictionary = {}
+        for i in dictionary_to_round_off:
+            rounded_off_dictionary[i] = round(100*dictionary_to_round_off[i], 2)
+        return rounded_off_dictionary
 
 
 

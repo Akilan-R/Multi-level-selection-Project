@@ -31,7 +31,7 @@ def main():
     Initial_proportion_of_selfish_traits_dictionary = {}
 
 
-    for i in range(number_of_selfish_traits):
+    for i in range(number_of_selfish_traits):                                        #
         trait = "C" + str(i + 1)
 
         if i + 1 < number_of_selfish_traits:

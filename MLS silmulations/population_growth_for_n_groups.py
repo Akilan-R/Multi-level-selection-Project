@@ -64,7 +64,7 @@ class population_growth_for_n_groups_class:
 
             list_of_groups_after_one_generation = []
 
-            for group_number in range(self.parameters_object.Number_of_groups):
+            for group_number in range(len(list_of_groups_in_current_generation)):
 
                 #calculate group dictionary for
                 group_dictionary_after_one_generations = self.population_growth_for_group_instance.find_group_dictionary_at_next_generation(list_of_groups_in_current_generation[group_number])
@@ -102,7 +102,7 @@ class population_growth_for_n_groups_class:
                     break
 
                 normalised_dictionary_at_next_generation = self.finding_normalised_group_dictionary_afer_pooling(pooled_group_dictionary_at_next_generation)
-                print("normalised_dictionary_at_next_generation at generation", str(t + 1), "=", normalised_dictionary_at_next_generation)
+                # print("normalised_dictionary_at_next_generation at generation", str(t + 1), "=", normalised_dictionary_at_next_generation)
 
 
                 for trait in parameters_object.C_value_dictionary:

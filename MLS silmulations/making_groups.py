@@ -34,7 +34,6 @@ class generate_groups:
 
         for k in self.proportion_of_selfish_traits_dictionary:
             number_of_individuals = round(self.proportion_of_selfish_traits_dictionary[k] * self.Initial_population_size)
-            # print("number_of_individuals", k, "=",number_of_individuals )
             for i in range(number_of_individuals):
                 self.combined_list_of_individuals.append(k)
 
@@ -42,12 +41,16 @@ class generate_groups:
     # Randomosing combined list
     def generate_group(self):
         random.shuffle(self.combined_list_of_individuals)
+
+        # print("len(self.combined_list_of_individuals)" ,len(self.combined_list_of_individuals))
         size_of_each_group = int(self.Initial_population_size / self.Number_of_groups)
+        # print("size_of_each_group" , size_of_each_group)
 
         self.combined_list_of_groups = [self.combined_list_of_individuals[i * size_of_each_group:(i + 1) * size_of_each_group] for
                                    i in range((len(self.combined_list_of_individuals) + size_of_each_group - 1) // size_of_each_group)]
 
         # print("combined_list_of_groups", self.combined_list_of_groups)
+        # print(len(self.combined_list_of_groups))
 
 
     # def convert_groups_to_compact_form(self):
@@ -71,16 +74,19 @@ class generate_groups:
 
         start_time_2 = time.process_time()
         combined_list_of_groups_in_compact_form = []
-        for i in range(self.Number_of_groups):
+
+        for i in range(len(self.combined_list_of_groups)):
             number_of_individuals_of_each_trait_in_group_dict = {}
 
-            for trait in self.proportion_of_selfish_traits_dictionary:
+            if len(self.combined_list_of_groups[i]) > 0:
+
+                for trait in self.proportion_of_selfish_traits_dictionary:
 
 
-                number_of_occurences_of_the_trait = self.combined_list_of_groups[i].count(trait)
-                number_of_individuals_of_each_trait_in_group_dict[trait] = number_of_occurences_of_the_trait
+                    number_of_occurences_of_the_trait = self.combined_list_of_groups[i].count(trait)
+                    number_of_individuals_of_each_trait_in_group_dict[trait] = number_of_occurences_of_the_trait
 
-            combined_list_of_groups_in_compact_form.append(number_of_individuals_of_each_trait_in_group_dict)
+                combined_list_of_groups_in_compact_form.append(number_of_individuals_of_each_trait_in_group_dict)
 
         # print("combined_list_of_groups_in_compact_form", combined_list_of_groups_in_compact_form)
 

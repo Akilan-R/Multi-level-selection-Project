@@ -75,7 +75,7 @@ class population_growth_for_group_class():
         # print("realised_fitness for", get_trait_from_C_value(C_value), " =" + str(realised_fitness))
         return realised_fitness
 
-#
+
 #
 number_of_generations = 10
 
